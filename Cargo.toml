@@ -1,0 +1,8 @@
+[package]
+name = "Conway"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rand = "0.10.0"
+macroquad = "0.4.14"
