@@ -28,7 +28,7 @@ async fn main() {
 
         clear_background(BLACK);
         if get_time() - last_update > update_speed {
-            grid = simulate_grid(&grid, width, height);
+            grid = simulate_grid(&grid, width, height, false);
             last_update = get_time();
         }
         draw_grid(&grid, cell_size as usize);
@@ -63,7 +63,7 @@ fn generate_grid(width: i32, height: i32, chance: i32) -> Vec<Vec<i32>> {
     grid
 }
 
-fn simulate_grid(grid: &Vec<Vec<i32>>, width: i32, height: i32) -> Vec<Vec<i32>> {
+fn simulate_grid(grid: &Vec<Vec<i32>>, width: i32, height: i32, highlife_rule: bool) -> Vec<Vec<i32>> {
     let mut temp_grid = grid.clone();
 
     for y in 0..height {
@@ -105,7 +105,7 @@ fn simulate_grid(grid: &Vec<Vec<i32>>, width: i32, height: i32) -> Vec<Vec<i32>>
                 }
             }
             else {
-                if alive_count == 3 {
+                if alive_count == 3 || (highlife_rule && alive_count == 6) {
                     temp_grid[y as usize][x as usize] = 1;
                 }
             }
