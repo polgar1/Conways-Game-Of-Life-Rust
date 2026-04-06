@@ -32,7 +32,6 @@ async fn main() {
             last_update = get_time();
         }
         draw_grid(&grid, cell_size as usize);
-        wait_seconds(1.0);
 
         if is_key_down(KeyCode::Escape) {
             break;
